@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Journal de Chantier</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Journal de Chantier</h1>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="photos.html">Avant / Après</a></li>
+        <li><a href="journal.html">Journal</a></li>
+        <li><a href="cagnotte.html">Cagnotte</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="presentation">
+    <h2>Suivi des travaux</h2>
+    <p>Cette page permettra d'avoir un suivi des travaux.>
+  </section>
+
+  <section class="journal">
+    <article>
+      <h3>24 avril 2025 – Début du chantier</h3>
+      <p>Mission du jour : consolider la toiture avec des bastaings costauds</p>
+      <img src="images/Journal/avant.jpg" alt="Avant" class="lightbox-trigger" data-full="images/Journal/20250424_105553.jpg" />
+      <img src="images/Journal/après.jpg" alt="Après" class="lightbox-trigger" data-full="images/Journal/20250424_131625.jpg" />
+    </article>
+
+    <article>
+      <h3>05 février 2025 – Reprise de la toiture</h3>
+      <p>Pose des nouvelles poutres en bois et couverture en tuiles anciennes pour conserver le charme du bâtiment.</p>
+    </article>
+
+    <article>
+      <h3>22 mars 2025 – Installation des menuiseries</h3>
+      <p>Les fenêtres double vitrage sont en place ! Le chantier commence à ressembler à une vraie maison.</p>
+    </article>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 - Réhabilitation de la Grange</p>
+  </footer>
+
+  <!-- GSAP + Script animation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from("header h1", {
+      y: -50,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out"
+    });
+
+    gsap.utils.toArray("section, article").forEach(element => {
+      gsap.from(element, {
+        scrollTrigger: {
+          trigger: element,
+          start: "top 85%",
+          toggleActions: "play none none none"
+        },
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out"
+      });
+    });
+  </script>
+  <div class="lightbox-overlay" id="lightbox">
+    <img src="" alt="agrandi" />
+  </div>
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+  
+    document.querySelectorAll('.lightbox-trigger').forEach(img => {
+      img.addEventListener('click', () => {
+        const fullImg = img.dataset.full;
+        lightboxImg.src = fullImg;
+        lightbox.style.display = 'flex';
+      });
+    });
+  
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+      lightboxImg.src = '';
+    });
+  </script>
+</body>
+</html>
