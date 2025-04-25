@@ -145,8 +145,15 @@
         ease: "power2.out"
       });
     });
+  </script>
 
-    // Script Lightbox
+  <!-- Lightbox HTML -->
+  <div class="lightbox-overlay" id="lightbox">
+    <img src="" alt="agrandi" />
+  </div>
+
+  <!-- Script Lightbox placé après la lightbox -->
+  <script>
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = lightbox.querySelector('img');
 
@@ -163,11 +170,6 @@
       lightboxImg.src = '';
     });
   </script>
-
-  <!-- Lightbox HTML -->
-  <div class="lightbox-overlay" id="lightbox">
-    <img src="" alt="agrandi" />
-  </div>
 
 </body>
 </html>
