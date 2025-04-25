@@ -6,4 +6,21 @@ document.getElementById('donForm').addEventListener('submit', function(e) {
     document.getElementById('merciMessage').textContent = message;
     this.reset();
   });
-  
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+
+  document.querySelectorAll('.lightbox-trigger').forEach(img => {
+    img.addEventListener('click', () => {
+      const fullImg = img.dataset.full;
+      lightboxImg.src = fullImg;
+      lightbox.style.display = 'flex';
+    });
+  });
+
+  lightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+    lightboxImg.src = '';
+  });
+</script>
