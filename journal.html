@@ -3,9 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Journal de Chantier</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Journal de Chantier - Réhabilitation de Grange</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Découvrez l'avancement du chantier de la réhabilitation de notre grange en maison, avec des photos avant/après et des récits détaillés jour par jour.">
+  <meta name="keywords" content="réhabilitation, grange, chantier, rénovation, travaux, journal, transformation habitation">
+  <meta name="author" content="Malou-40">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Journal de Chantier - Réhabilitation de Grange">
+  <meta property="og:description" content="Suivez l'évolution de la réhabilitation d'une grange en maison avec des étapes détaillées et des photos avant/après.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://malou-40.github.io/siterehabilitationgrange/journal.html">
+  <meta property="og:image" content="https://malou-40.github.io/siterehabilitationgrange/images/apres1.jpg">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
@@ -22,24 +38,24 @@
 
   <section class="presentation">
     <h2>Suivi des travaux</h2>
-    <p>Cette page permettra d'avoir un suivi des travaux.
+    <p>Cette page permettra d'avoir un suivi régulier de l'évolution du chantier de la grange, à travers des récits et des photos d'étapes clés.</p>
   </section>
 
   <section class="journal">
     <article>
       <h3>24 avril 2025 – Renforcement de la toiture avec des bastaings : entre théorie et réalité</h3>
       <p>Pour consolider une poutre fragilisée par l’humidité et les infiltrations, nous avons dû relever la toiture existante à l’aide d’un cric. La poutre d’origine, abîmée par le temps et l’eau, menaçait la stabilité de la structure. Avec mon père, nous avons installé des bastaings pour assurer un bon renfort.
-On pensait que ce serait simple… mais en réalité, ça nous a pris 3 heures : la mise en pratique s’est révélée bien différente de ce qu’on avait imaginé en théorie !</p>
-      <img src="avant.jpg" alt="Avant" class="lightbox-trigger" data-full="20250424_105553.jpg" />
-      <img src="après.jpg" alt="Après" class="lightbox-trigger" data-full="20250424_131625.jpg" />
-    </article>
-    <article>
-      <h3>25 avril 2025 – Installation des planches de rive et préparation pour la pose de la gouttière</h3>
-      <p>Après avoir installé les planches de rive pour habiller et protéger les extrémités de la toiture, nous avons coupé les anciens poteaux qui dépassaient et gênaient. Cette étape était indispensable pour préparer correctement l'installation de la future gouttière, qui viendra bientôt en place pour assurer une bonne évacuation des eaux de pluie. </p>
-      <img src="20250425_152023-redimensionner.jpg" alt="Avant" class="lightbox-trigger" data-full="20250425_152023.jpg" />
-      <img src="20250427_134944-redimensionner.jpg" alt="Après" class="lightbox-trigger" data-full="20250427_134944.jpg" />
+      On pensait que ce serait simple… mais en réalité, ça nous a pris 3 heures : la mise en pratique s’est révélée bien différente de ce qu’on avait imaginé en théorie !</p>
+      <img src="avant.jpg" alt="Photo avant renforcement de la toiture" class="lightbox-trigger" data-full="20250424_105553.jpg" />
+      <img src="après.jpg" alt="Photo après pose des bastaings pour la toiture" class="lightbox-trigger" data-full="20250424_131625.jpg" />
     </article>
 
+    <article>
+      <h3>25 avril 2025 – Installation des planches de rive et préparation pour la pose de la gouttière</h3>
+      <p>Après avoir installé les planches de rive pour habiller et protéger les extrémités de la toiture, nous avons coupé les anciens poteaux qui dépassaient et gênaient. Cette étape était indispensable pour préparer correctement l'installation de la future gouttière, qui viendra bientôt en place pour assurer une bonne évacuation des eaux de pluie.</p>
+      <img src="20250425_152023-redimensionner.jpg" alt="Planches de rive en cours d'installation" class="lightbox-trigger" data-full="20250425_152023.jpg" />
+      <img src="20250427_134944-redimensionner.jpg" alt="Fin de la préparation pour pose de la gouttière" class="lightbox-trigger" data-full="20250427_134944.jpg" />
+    </article>
   </section>
 
   <footer>
@@ -73,13 +89,17 @@ On pensait que ce serait simple… mais en réalité, ça nous a pris 3 heures :
       });
     });
   </script>
+
+  <!-- Lightbox HTML -->
   <div class="lightbox-overlay" id="lightbox">
-    <img src="" alt="agrandi" />
+    <img src="" alt="Agrandissement d'une photo du journal de chantier" />
   </div>
+
+  <!-- Script Lightbox -->
   <script>
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = lightbox.querySelector('img');
-  
+
     document.querySelectorAll('.lightbox-trigger').forEach(img => {
       img.addEventListener('click', () => {
         const fullImg = img.dataset.full;
@@ -87,11 +107,12 @@ On pensait que ce serait simple… mais en réalité, ça nous a pris 3 heures :
         lightbox.style.display = 'flex';
       });
     });
-  
+
     lightbox.addEventListener('click', () => {
       lightbox.style.display = 'none';
       lightboxImg.src = '';
     });
   </script>
+
 </body>
 </html>
