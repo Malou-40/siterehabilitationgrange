@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://malou-40.github.io/siterehabilitationgrange/sitemap.xml
