@@ -93,6 +93,9 @@
     <h2>🔔 Restez informé des nouvelles étapes !</h2>
     <p>Recevez une notification dès qu’un nouvel article du journal est publié.</p>
     <button id="subscribe-btn">S’abonner aux notifications</button>
+    <p id="confirmation-message" style="display: none; color: green; margin-top: 1rem; font-weight: bold;">
+      ✅ Merci, vous êtes bien inscrit(e) aux notifications !
+    </p>
   </section>
 
   <footer>
@@ -148,7 +151,6 @@
       });
     });
 
-    // Effet d'accueil spécifique (animation titre comme une intro de film)
     gsap.to("header h1", {
       text: "Réhabilitation d'une Grange en Habitation",
       duration: 3,
@@ -162,7 +164,7 @@
     <img src="" alt="Agrandissement d'une photo du chantier" />
   </div>
 
-  <!-- Script Lightbox placé après -->
+  <!-- Script Lightbox -->
   <script>
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = lightbox.querySelector('img');
@@ -181,17 +183,27 @@
     });
   </script>
 
-  <!-- Script abonnement OneSignal -->
+  <!-- Script abonnement OneSignal avec confirmation -->
   <script>
-    const subscribeBtn = document.getElementById('subscribe-btn');
-    if (subscribeBtn) {
-      subscribeBtn.addEventListener('click', async () => {
-        const OneSignal = window.OneSignal || window.OneSignalDeferred;
-        OneSignalDeferred.push(function(OneSignal) {
-          OneSignal.showSlidedownPrompt();
+    document.addEventListener("DOMContentLoaded", function () {
+      const subscribeBtn = document.getElementById('subscribe-btn');
+      const confirmationMessage = document.getElementById('confirmation-message');
+
+      if (subscribeBtn) {
+        subscribeBtn.addEventListener('click', () => {
+          if (window.OneSignal) {
+            window.OneSignal.showSlidedownPrompt();
+            setTimeout(() => {
+              if (confirmationMessage) {
+                confirmationMessage.style.display = 'block';
+              }
+            }, 3000);
+          } else {
+            alert("OneSignal n'est pas encore chargé. Réessayez dans quelques instants.");
+          }
         });
-      });
-    }
+      }
+    });
   </script>
 
 </body>
