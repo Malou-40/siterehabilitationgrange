@@ -52,10 +52,10 @@
     <p>Cette page permettra d'avoir un suivi régulier de l'évolution du chantier de la grange, à travers des récits et des photos d'étapes clés.</p>
   </section>
 
-  <section class="presentation">
-    <h2>Première étape : une gouttière pour répondre à la demande du nouveau voisin</h2>
-    <p>Actuellement, nous n’en sommes qu’à la première phase des travaux, initiée suite à la demande de notre nouveau voisin. Celui-ci nous a demandé d’installer une gouttière pour canaliser correctement l’écoulement des eaux de pluie.
-Cette étape, bien que simple en apparence, a nécessité quelques ajustements sur la toiture existante, mais elle marque le début concret du chantier. D’autres phases suivront, mais chaque chose en son temps !</p>
+  <section class="abonnement">
+    <h2>🔔 Restez informé des nouvelles étapes !</h2>
+    <p>Recevez une notification dès qu’un nouvel article du journal est publié.</p>
+    <button id="subscribe-btn">S’abonner aux notifications</button>
   </section>
 
   <section class="journal">
@@ -156,6 +156,19 @@ Encore une belle étape de franchie dans ce chantier qui avance pas à pas !</p>
       lightbox.style.display = 'none';
       lightboxImg.src = '';
     });
+  </script>
+
+  <!-- Script abonnement OneSignal -->
+  <script>
+    const subscribeBtn = document.getElementById('subscribe-btn');
+    if (subscribeBtn) {
+      subscribeBtn.addEventListener('click', async () => {
+        const OneSignal = window.OneSignal || window.OneSignalDeferred;
+        OneSignalDeferred.push(function(OneSignal) {
+          OneSignal.showSlidedownPrompt();
+        });
+      });
+    }
   </script>
 </body>
 </html>
