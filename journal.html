@@ -56,6 +56,9 @@
     <h2>🔔 Restez informé des nouvelles étapes !</h2>
     <p>Recevez une notification dès qu’un nouvel article du journal est publié.</p>
     <button id="subscribe-btn">S’abonner aux notifications</button>
+    <p id="confirmation-message" style="display: none; color: green; margin-top: 1rem; font-weight: bold;">
+      ✅ Merci, vous êtes bien inscrit(e) aux notifications !
+    </p>
   </section>
 
   <section class="journal">
@@ -158,17 +161,27 @@ Encore une belle étape de franchie dans ce chantier qui avance pas à pas !</p>
     });
   </script>
 
-  <!-- Script abonnement OneSignal -->
+  <!-- Script abonnement OneSignal avec confirmation -->
   <script>
-    const subscribeBtn = document.getElementById('subscribe-btn');
-    if (subscribeBtn) {
-      subscribeBtn.addEventListener('click', async () => {
-        const OneSignal = window.OneSignal || window.OneSignalDeferred;
-        OneSignalDeferred.push(function(OneSignal) {
-          OneSignal.showSlidedownPrompt();
+    document.addEventListener("DOMContentLoaded", function () {
+      const subscribeBtn = document.getElementById('subscribe-btn');
+      const confirmationMessage = document.getElementById('confirmation-message');
+
+      if (subscribeBtn) {
+        subscribeBtn.addEventListener('click', () => {
+          if (window.OneSignal) {
+            window.OneSignal.showSlidedownPrompt();
+            setTimeout(() => {
+              if (confirmationMessage) {
+                confirmationMessage.style.display = 'block';
+              }
+            }, 3000);
+          } else {
+            alert("OneSignal n'est pas encore chargé. Réessayez dans quelques instants.");
+          }
         });
-      });
-    }
+      }
+    });
   </script>
 </body>
 </html>
