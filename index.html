@@ -23,6 +23,17 @@
 
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- OneSignal Web Push -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "8e747613-7738-4803-b0d6-4a93750c7a6e",
+      });
+    });
+  </script>
 </head>
 <body>
   <header>
@@ -76,6 +87,12 @@
         <input type="submit" value="Faire un don avec PayPal" style="padding: 0.75rem 1.5rem; background-color: #ffc439; border: none; font-weight: bold; cursor: pointer; border-radius: 6px;" />
       </form>
     </div>
+  </section>
+
+  <section class="abonnement">
+    <h2>🔔 Restez informé des nouvelles étapes !</h2>
+    <p>Recevez une notification dès qu’un nouvel article du journal est publié.</p>
+    <button id="subscribe-btn">S’abonner aux notifications</button>
   </section>
 
   <footer>
@@ -162,6 +179,19 @@
       lightbox.style.display = 'none';
       lightboxImg.src = '';
     });
+  </script>
+
+  <!-- Script abonnement OneSignal -->
+  <script>
+    const subscribeBtn = document.getElementById('subscribe-btn');
+    if (subscribeBtn) {
+      subscribeBtn.addEventListener('click', async () => {
+        const OneSignal = window.OneSignal || window.OneSignalDeferred;
+        OneSignalDeferred.push(function(OneSignal) {
+          OneSignal.showSlidedownPrompt();
+        });
+      });
+    }
   </script>
 
 </body>
