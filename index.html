@@ -89,14 +89,14 @@
     </div>
   </section>
 
-  <section class="abonnement">
-    <h2>🔔 Restez informé des nouvelles étapes !</h2>
-    <p>Recevez une notification dès qu’un nouvel article du journal est publié.</p>
-    <button id="subscribe-btn">S’abonner aux notifications</button>
-    <p id="confirmation-message" style="display: none; color: green; margin-top: 1rem; font-weight: bold;">
-      ✅ Merci, vous êtes bien inscrit(e) aux notifications !
-    </p>
-  </section>
+<section class="abonnement">
+  <h2>🔔 Restez informé des nouvelles étapes !</h2>
+  <p>Recevez une notification dès qu’un nouvel article du journal est publié.</p>
+  <button id="subscribe-btn" disabled>S’abonner aux notifications</button>
+  <p id="confirmation-message" style="display: none; color: green; margin-top: 1rem; font-weight: bold;">
+    ✅ Merci, vous êtes bien inscrit(e) aux notifications !
+  </p>
+</section>
 
   <footer>
     <p>&copy; 2025 - Projet de Réhabilitation d'une Grange</p>
@@ -183,28 +183,44 @@
     });
   </script>
 
-  <!-- Script abonnement OneSignal avec confirmation -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const subscribeBtn = document.getElementById('subscribe-btn');
-      const confirmationMessage = document.getElementById('confirmation-message');
+<!-- Script abonnement OneSignal avec confirmation (corrigé pour OneSignal v16) -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const subscribeBtn = document.getElementById('subscribe-btn');
+    const confirmationMessage = document.getElementById('confirmation-message');
 
-      if (subscribeBtn) {
-        subscribeBtn.addEventListener('click', () => {
-          if (window.OneSignal) {
-            window.OneSignal.showSlidedownPrompt();
-            setTimeout(() => {
-              if (confirmationMessage) {
-                confirmationMessage.style.display = 'block';
-              }
-            }, 3000);
-          } else {
-            alert("OneSignal n'est pas encore chargé. Réessayez dans quelques instants.");
-          }
-        });
-      }
+    // Attend que OneSignal soit prêt (v16+)
+    function attendreOneSignalPret(callback) {
+      const interval = setInterval(() => {
+        if (
+          window.OneSignal &&
+          window.OneSignal.Notifications &&
+          typeof window.OneSignal.Notifications.showSlidedownPrompt === 'function'
+        ) {
+          clearInterval(interval);
+          callback();
+        }
+      }, 300);
+    }
+
+    attendreOneSignalPret(() => {
+      subscribeBtn.disabled = false;
+
+      subscribeBtn.addEventListener('click', () => {
+        window.OneSignal.Notifications.showSlidedownPrompt()
+          .then(() => {
+            if (confirmationMessage) {
+              confirmationMessage.style.display = 'block';
+            }
+          })
+          .catch((err) => {
+            console.error("Erreur OneSignal :", err);
+            alert("Une erreur est survenue. Veuillez réessayer plus tard.");
+          });
+      });
     });
-  </script>
+  });
+</script>
 
 </body>
 </html>
