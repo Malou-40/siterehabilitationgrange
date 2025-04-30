@@ -161,27 +161,36 @@ Encore une belle étape de franchie dans ce chantier qui avance pas à pas !</p>
     });
   </script>
 
-  <!-- Script abonnement OneSignal avec confirmation -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const subscribeBtn = document.getElementById('subscribe-btn');
-      const confirmationMessage = document.getElementById('confirmation-message');
+<!-- Script abonnement OneSignal avec confirmation (corrigé pour v16) -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const subscribeBtn = document.getElementById('subscribe-btn');
+    const confirmationMessage = document.getElementById('confirmation-message');
 
-      if (subscribeBtn) {
-        subscribeBtn.addEventListener('click', () => {
-          if (window.OneSignal) {
-            window.OneSignal.showSlidedownPrompt();
-            setTimeout(() => {
+    if (subscribeBtn) {
+      subscribeBtn.addEventListener('click', () => {
+        if (
+          window.OneSignal &&
+          OneSignal.Notifications &&
+          typeof OneSignal.Notifications.showSlidedownPrompt === 'function'
+        ) {
+          OneSignal.Notifications.showSlidedownPrompt()
+            .then(() => {
               if (confirmationMessage) {
                 confirmationMessage.style.display = 'block';
               }
-            }, 3000);
-          } else {
-            alert("OneSignal n'est pas encore chargé. Réessayez dans quelques instants.");
-          }
-        });
-      }
-    });
-  </script>
+            })
+            .catch((err) => {
+              console.error("Erreur lors de l'abonnement OneSignal :", err);
+              alert("Une erreur est survenue. Veuillez réessayer plus tard.");
+            });
+        } else {
+          alert("Le système de notifications n'est pas encore prêt. Merci de réessayer dans quelques instants.");
+        }
+      });
+    }
+  });
+</script>
+
 </body>
 </html>
