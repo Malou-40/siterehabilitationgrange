@@ -241,3 +241,30 @@ html {
   scroll-behavior: smooth;
 }
 
+.sommaire ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.sommaire li {
+  margin: 0.5rem 0;
+}
+
+.sommaire a {
+  text-decoration: none;
+  color: #444;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.sommaire a:hover {
+  color: #6a4e42;
+}
+
+.sommaire a.active {
+  color: #d1440d;
+  text-decoration: underline;
+}
+
+
