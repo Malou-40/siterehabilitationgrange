@@ -201,3 +201,38 @@ img {
 #subscribe-btn:hover {
   background-color: #e0aa30;
 }
+
+.sommaire {
+  background: rgba(255, 255, 255, 0.85);
+  color: #333;
+  padding: 1.5rem 2rem;
+  margin: 2rem auto;
+  max-width: 900px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.sommaire h2 {
+  margin-top: 0;
+}
+
+.sommaire ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.sommaire li {
+  margin: 0.5rem 0;
+}
+
+.sommaire a {
+  text-decoration: none;
+  color: #6a4e42;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.sommaire a:hover {
+  color: #8a6558;
+}
