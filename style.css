@@ -267,4 +267,39 @@ html {
   text-decoration: underline;
 }
 
+/* Mode clair par défaut */
+body.light-theme {
+  background-color: #ffffff;
+  color: #333;
+}
+
+body.light-theme section {
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+}
+
+/* Mode sombre */
+body.dark-theme {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+body.dark-theme section {
+  background: rgba(0, 0, 0, 0.8);
+  color: #f1f1f1;
+}
+
+/* Bouton thème */
+#theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #444;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
