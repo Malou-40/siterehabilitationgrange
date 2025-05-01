@@ -73,6 +73,7 @@
         <li><a href="cagnotte.html">Cagnotte</a></li>
       </ul>
     </nav>
+    <button id="theme-toggle" title="Changer le thème">🌙</button>
   </header>
 
   <section class="presentation">
@@ -232,5 +233,25 @@ Encore une belle étape de franchie dans ce chantier qui avance pas à pas !</p>
   });
 </script>
 
+  <!-- Dark Theme Toggle -->
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const userPref = localStorage.getItem('theme');
+
+    if (
+      userPref === 'dark' ||
+      (!userPref && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      document.documentElement.classList.add('dark-mode');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark-mode');
+      localStorage.setItem(
+        'theme',
+        document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light'
+      );
+    });
+  </script>
 </body>
 </html>
