@@ -236,3 +236,8 @@ img {
 .sommaire a:hover {
   color: #8a6558;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
