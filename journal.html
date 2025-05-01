@@ -61,6 +61,36 @@
   });
 </script>
 
+<script>
+  // Applique le thème dès le chargement
+  function appliquerTheme(theme) {
+    document.body.classList.remove("dark-theme", "light-theme");
+    document.body.classList.add(theme);
+  }
+
+  // Détecte le thème système si aucun thème choisi
+  function detecterThemeSysteme() {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark-theme" : "light-theme";
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const themeBtn = document.getElementById("theme-toggle");
+    let theme = localStorage.getItem("theme");
+
+    if (!theme) {
+      theme = detecterThemeSysteme();
+      localStorage.setItem("theme", theme);
+    }
+
+    appliquerTheme(theme);
+
+    themeBtn.addEventListener("click", () => {
+      const nouveauTheme = document.body.classList.contains("dark-theme") ? "light-theme" : "dark-theme";
+      appliquerTheme(nouveauTheme);
+      localStorage.setItem("theme", nouveauTheme);
+    });
+  });
+</script>
 
 <body>
   <header>
